@@ -84,4 +84,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 //もしエラーがあったら下記の処理を行う
 include 'views/new_book.php';
-gmp_testbit()
