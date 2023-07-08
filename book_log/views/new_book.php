@@ -1,4 +1,4 @@
-<!-- new.phpおよびcreate_book.phpからの読み込みページ -->
+<!-- new.phpおよびcreate_book.phpからの読み込みページ  -->
 <!DOCTYPE html>
 <html lang="ja">
 
