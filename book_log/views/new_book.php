@@ -1,4 +1,4 @@
-<!-- トップページからの遷移ページ -->
+<!-- new.phpおよびcreate_book.phpからの読み込みページ -->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -71,4 +71,3 @@
 </body>
 
 </html>
-test

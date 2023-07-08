@@ -1,4 +1,4 @@
-<!--読書ログのプログラムを定義（遷移後のページ）-->
+<!--new_book.php/create_book.php-->
 <?php
 require_once __DIR__ . '../../companies/lib/mysqli.php';
 
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //データベース解除
     mysqli_close($link);
     //リダイレクト
-    header("Location:companies/index.php");
+    header("Location:../companies/index.php");
   }
 }
 //もしエラーがあったら下記の処理を行う

@@ -74,5 +74,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 include 'views/new.php';
-<a href="
-"></a>

@@ -1,3 +1,4 @@
+<!-- databaseへの接続詳細を隠すための設定 -->
 <?php
 
 require __DIR__ . '/../../vendor/autoload.php';

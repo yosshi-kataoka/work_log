@@ -38,4 +38,3 @@
 </body>
 
 </html>
-trait_exists
