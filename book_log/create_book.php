@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     'score' => $_POST['score'],
     'summary' => $_POST['summary']
   ];
+
   //バリデーション処理
   $errors = validate($book);
   if (!count($errors)) {
@@ -79,9 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //データベース解除
     mysqli_close($link);
     //リダイレクト
-    header("Location:../companies/index.php");
+    header("Location: index.php");
   }
 }
 //もしエラーがあったら下記の処理を行う
-include 'views/new_book.php';
-// test
+$title = '読書ログの登録';
+$content = __DIR__ . "/views/new_book.php";
+include 'views/layout.php';

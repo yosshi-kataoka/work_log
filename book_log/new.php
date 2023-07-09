@@ -1,5 +1,4 @@
 <!-- 読書ログのトップページ -->
-
 <?php
 $book = [
   'title' => '',
@@ -9,4 +8,6 @@ $book = [
   'summary' => ''
 ];
 $errors = [];
-include 'views/new_book.php';
+$title = '読書ログの登録';
+$content = __DIR__ . '/views/new_book.php';
+include __DIR__ . '/views/layout.php';
