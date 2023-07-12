@@ -10,12 +10,12 @@
 </head>
 
 <body>
-  <header class=" navbar shadow-sm p-3 py-4 ">
+  <header class=" navbar shadow-sm p-4 py-4 ">
     <h1 class="h2">
       <a class="text-body text-decoration-none" href="index.php">読書ログ</a>
     </h1>
   </header>
-  <div class="container ml-5 mt-5">
+  <div class="container ml-2 mt-5">
     <?php include $content; ?>
   </div>
 </body>
