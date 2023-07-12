@@ -1,14 +1,20 @@
-<h1>読書ログ</h1>
 <a href="new.php">読書ログを登録する</a>
 <main>
-  <section>
-    <h2>新世界より</h2>
-    <div>著者名&nbsp;/&nbsp;読書状況&nbsp;/&nbsp;評価</div>
-    <div>感想</div>
-  </section>
-  <section>
-    <h2>新世界より</h2>
-    <div>著者名/読書状況/評価</div>
-    <div>感想</div>
-  </section>
+  <?php if (count($books) > 0) : ?>
+    <?php foreach ($books as $book) : ?>
+      <section>
+        <h2><?php echo escape($book['title']); ?></h2>
+        <div>
+          <?php echo escape($book['author']); ?>&nbsp;/&nbsp;
+          <?php echo escape($book['status']); ?>&nbsp;/&nbsp;
+          <?php echo escape($book['score']); ?>点
+        </div>
+        <div>
+          <?php echo nl2br(escape($book['summary']), false); ?>
+        </div>
+      </section>
+    <?php endforeach ?>
+  <?php else : ?>
+    <p>読書情報を登録してください。</p>
+  <?php endif ?>
 </main>
