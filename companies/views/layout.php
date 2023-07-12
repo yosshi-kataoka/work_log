@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container ml-4">
     <!-- $contentにはパスを定義する -->
     <?php include $content; ?>
   </div>
