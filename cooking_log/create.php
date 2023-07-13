@@ -38,7 +38,7 @@ EOT;
       $errors['name'] = '料理名は255文字以内に入力してください';
     }
     //料理の種類
-    $kind = ['和食', '洋食', '中華'];
+    $kind = ["japan", "western", "china"];
     if (!in_array($food['menu_kind'], $kind, true)) {
       $errors['menu_kind'] = '和食、洋食、中華より選択してください';
     }
@@ -59,9 +59,12 @@ EOT;
 
   // ここから処理開始
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (array_key_exists('menu_kind', $_POST)) {
+      $menu_kind = $_POST['menu_kind'];
+    }
     $food = [
       'name' => $_POST['name'],
-      'menu_kind' => $_POST['menu_kind'],
+      'menu_kind' => $menu_kind,
       'score' => $_POST['score'],
       'recipe' => $_POST['recipe']
     ];
@@ -77,6 +80,6 @@ EOT;
     }
     //もしえらーがあれば
   }
-  $title = '会社情報の登録';
+  $title = '料理の登録';
   $content = __DIR__ . "/views/new.php";
   include 'views/layout.php';
