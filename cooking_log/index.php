@@ -15,8 +15,10 @@ function ListFood($link)
   mysqli_free_result($results);
   return $foods;
 }
+// データベースの接続
 $link = dbConnect();
-$books = ListFood($link);
+// データベースからデータを取得
+$foods = ListFood($link);
 
 $title = '料理の一覧';
 $content = __DIR__ . '/views/index.php';
