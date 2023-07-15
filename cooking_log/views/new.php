@@ -15,16 +15,16 @@
   <div class="mb-3">
     <div>
       <div class="form-check form-check-inline">
-        <label for="japan" class="form-check-label">和食</label>
-        <input type="radio" id="japan" class="form-check-input" name="menu_kind" value="japan" checked <?php echo ($food['menu_kind'] === 'japan') ? 'checked' : ""; ?>>
+        <label for="和食" class="form-check-label">和食</label>
+        <input type="radio" id="和食" class="form-check-input" name="menu_kind" value="和食" checked <?php echo ($food['menu_kind'] === '和食') ? 'checked' : ""; ?>>
       </div>
       <div class="form-check form-check-inline">
-        <label for="western" class="form-check-label">洋食</label>
-        <input type="radio" id="western" class="form-check-input" name="menu_kind" value="western" <?php echo ($food['menu_kind'] === 'western') ? 'checked' : ""; ?>>
+        <label for="洋食" class="form-check-label">洋食</label>
+        <input type="radio" id="洋食" class="form-check-input" name="menu_kind" value="洋食" <?php echo ($food['menu_kind'] === '洋食') ? 'checked' : ""; ?>>
       </div>
       <div class="form-check form-check-inline">
-        <label for="china" class="form-check-label">中華</label>
-        <input type="radio" id="china" class="form-check-input" name="menu_kind" value="china" <?php echo ($food['menu_kind'] === 'china') ? 'checked' : ""; ?>>
+        <label for="中華" class="form-check-label">中華</label>
+        <input type="radio" id="中華" class="form-check-input" name="menu_kind" value="中華" <?php echo ($food['menu_kind'] === '中華') ? 'checked' : ""; ?>>
       </div>
       </dic>
     </div>
