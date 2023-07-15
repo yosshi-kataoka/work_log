@@ -38,7 +38,7 @@ EOT;
       $errors['name'] = '料理名は255文字以内に入力してください';
     }
     //料理の種類
-    $kind = ["japan", "western", "china"];
+    $kind = ["和食", "洋食", "中華"];
     if (!in_array($food['menu_kind'], $kind, true)) {
       $errors['menu_kind'] = '和食、洋食、中華より選択してください';
     }
