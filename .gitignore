@@ -1,1 +1,6 @@
+# これは.gitignoreファイルです。
+# 以下のファイルはgit管理下より外れます。
+
 .vscode
+launch.json
+.gitignore
