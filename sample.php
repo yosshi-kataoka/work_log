@@ -1,8 +1,13 @@
 <?php
 
-function sayHello(string $argString): void
-{
-  echo "Hello" . $argString . PHP_EOL;
+$items = [
+  ['name' => 'onion', 'price' => 100],
+];
+$total = 0;
+foreach ($items as $item) {
+  $price = $item['price'];
+  $total += $price;
 }
 
-sayHello('world');
+料金の取得
+料金の合計
