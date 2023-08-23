@@ -33,6 +33,7 @@ function judge(int $answer, int $guess): array
   foreach ($arrayGuess as $key => $guessNumber) {
     if ($arrayAnswer[$key] === $arrayGuess[$key]) {
       $hit++;
+      continue;
     }
     if (in_array($guessNumber, $arrayAnswer, true)) {
       $blow++;
