@@ -24,34 +24,19 @@
 // judge(5678, 8756) //=> [0, 4]
 // judge(5678, 1234) //=> [0, 0] -->
 
-const NUMBER_ELEMENT = 3;
-
-function judge(int $answer, int $response): array
+function judge(int $answer, int $guess): array
 {
-  $answer = splitAnswer($answer);
-  $response = splitResponse($response);
   $hit = 0;
   $blow = 0;
-  for ($i = 0; $i <= NUMBER_ELEMENT; $i++) {
-    if ($answer[$i] === $response[$i]) {
+  $arrayGuess = str_split((string)$guess);
+  $arrayAnswer = str_split((string)$answer);
+  foreach ($arrayGuess as $key => $guessNumber) {
+    if ($arrayAnswer[$key] === $arrayGuess[$key]) {
       $hit++;
     }
+    if (in_array($guessNumber, $arrayAnswer, true)) {
+      $blow++;
+    }
   }
-  $blow = (countDuplication($answer, $response) - $hit);
-  return ([$hit, $blow]);
-}
-
-function splitAnswer(int $answer): array
-{
-  return str_split($answer);
-}
-
-function splitResponse(int $response): array
-{
-  return str_split($response);
-}
-
-function countDuplication(array $answerNumber, array $responseNumber): int
-{
-  return  count(array_intersect($answerNumber, $responseNumber));
+  return [$hit, $blow];
 }
