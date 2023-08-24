@@ -16,9 +16,10 @@
 
 function convertToNumber(string ...$numbers): array
 {
-  $convertNumber = [];
-  foreach ($numbers as $number) {
-    $convertNumber[] = (string)mb_substr($number, 1);
-  }
-  return $convertNumber;
+  // アロー関数
+  return array_map(fn ($num) => substr($num, 1, strlen($num) - 1), $numbers);
+  // 無名関数
+  // return array_map(function ($num) {
+  //   return substr($num, 1, strlen($num) - 1);
+  // }, $numbers);
 }
