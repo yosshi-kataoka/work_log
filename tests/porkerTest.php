@@ -11,7 +11,7 @@ class porkerTest extends TestCase
 
     $this->assertSame(['high card', 'pair', 2], showDown('CK', 'DJ', 'C10', 'H10'));
     $this->assertSame(['high card', 'straight', 2], showDown('CK', 'DJ', 'C3', 'H4'));
-    $this->assertSame(['straight', 'pair', 1], showDown('C3', 'H4', 'Dk', 'Sk'));
+    $this->assertSame(['straight', 'pair', 1], showDown('C3', 'H4', 'DK', 'SK'));
     $this->assertSame(['high card', 'high card', 1], showDown('HJ', 'SK', 'DQ', 'D10'));
     $this->assertSame(['high card', 'high card', 2], showDown('H9', 'SK', 'DK', 'D10'));
     $this->assertSame(['high card', 'high card', 0], showDown('H3', 'S5', 'D5', 'D3'));
