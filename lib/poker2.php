@@ -47,40 +47,46 @@ const HIGH_CARD = 'high card';
 const PAIR = 'pair';
 const STRAIGHT = 'straight';
 
-#カードの強さを定義
-const CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-
-define('CARD_RANKS', (function () {
-  $cardRanks = [];
-  foreach (CARDS as $index => $card) {
-    $cardRanks[$card] = $index;
-  }
-  return $cardRanks;
-})());
-
 #役の強さを定義
-const CARD_STRENGTH = [
+const HAND_RANKS = [
   HIGH_CARD => 1,
   PAIR => 2,
   STRAIGHT => 3,
 ];
 
+#カードの強さを定義
+const CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+
+define('CARD_RANK', (function () {
+  $cardRanks = [];
+  foreach (CARDS as $index => $number) {
+    $cardRanks[$number] = $index;
+  }
+  return $cardRanks;
+})());
+
+#カードの文字列をカードの強さの値に変換
 function showDown2(string $card1_1, string $card1_2, string $card2_1, string $card2_2): array
 {
-  $cardRanks = [];
+  $cardRank = [];
   $cardRank = convertToCardRank([$card1_1, $card1_2, $card2_1, $card2_2]);
   $playerCardRanks = array_chunk($cardRank, 2);
   $hands = array_map(fn ($playerCardRank) => handJudge($playerCardRank[0], $playerCardRank[1]), $playerCardRanks);
-  $winner = winnerJudge($hands);
-  return [$hands[0]['name'], $hands[1]['name'], $winner];
+  $winner = winnerJudge($hands[0], $hands[1]);
+  return [
+    $hands[0]['name'],
+    $hands[1]['name'],
+    $winner,
+  ];
 }
-#勝者の判定
+#カードの強さ、役の強さを判定
+#勝者を判定
+
 function convertToCardRank(array $cards): array
 {
-  return array_map(fn ($card) => CARD_RANKS[substr($card, 1, strlen($card) - 1)], $cards);
+  return array_map(fn ($card) => CARD_RANK[substr($card, 1, strlen($card) - 1)], $cards);
 }
 
-#カードの強さ、役の判定
 function handJudge(int $card1, int $card2): array
 {
   $primary = max($card1, $card2);
@@ -89,15 +95,15 @@ function handJudge(int $card1, int $card2): array
   if (isStraight2($card1, $card2)) {
     $name = STRAIGHT;
     if (isMinMax2($card1, $card2)) {
-      $primary = min(CARD_RANKS);
-      $secondary = max(CARD_RANKS);
+      $primary = min(CARD_RANK);
+      $secondary = max(CARD_RANK);
     }
   } elseif (isPair2($card1, $card2)) {
     $name = PAIR;
   }
   return [
     'name' => $name,
-    'rank' => CARD_STRENGTH[$name],
+    'rank' => HAND_RANKS[$name],
     'primary' => $primary,
     'secondary' => $secondary,
   ];
@@ -105,12 +111,12 @@ function handJudge(int $card1, int $card2): array
 
 function isStraight2(int $card1, int $card2): bool
 {
-  return abs($card1 - $card2) === 1 || isMinMax2($card1, $card2);
+  return abs($card1 -  $card2) === 1 || isMinMax2($card1, $card2);
 }
 
 function isMinMax2(int $card1, int $card2): bool
 {
-  return abs($card1 - $card2) === max(CARD_RANKS);
+  return abs($card1 - $card2) === max(CARD_RANK);
 }
 
 function isPair2(int $card1, int $card2): bool
@@ -118,12 +124,13 @@ function isPair2(int $card1, int $card2): bool
   return $card1 === $card2;
 }
 
-function winnerJudge(array $hands): int
+function winnerJudge(array $hand1, array $hand2): int
 {
   foreach (['rank', 'primary', 'secondary'] as $k) {
-    if ($hands[0][$k] > $hands[1][$k]) {
+    if ($hand1[$k] > $hand2[$k]) {
       return 1;
-    } elseif ($hands[0][$k] < $hands[1][$k]) {
+    }
+    if ($hand1[$k] < $hand2[$k]) {
       return 2;
     }
   }
