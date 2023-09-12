@@ -31,10 +31,10 @@ class PokerGame
   public function start(): array
   {
     $hands = [];
-    $CardRule = $this->getCardRule();
+    $cardRule = $this->getCardRule();
     foreach ([$this->cards1, $this->cards2] as $cards) {
       $pokerCards = array_map(fn ($card) => new PokerCard($card), $cards);
-      $handEvaluator = new PokerHandEvaluator($CardRule);
+      $handEvaluator = new PokerHandEvaluator($cardRule);
       $hands[] = $handEvaluator->getHand($pokerCards);
     }
     return $hands;
@@ -42,14 +42,13 @@ class PokerGame
 
   public function getCardRule()
   {
-    if (count($this->cards1) === self::TWO_CARDS_USED) {
-      return new CardRuleA();
-    }
+    $rule = new CardRuleA();
     if (count($this->cards1) === self::THREE_CARDS_USED) {
       return new CardRuleB();
     }
     if (count($this->cards1) === self::FIVE_CARDS_USED) {
       return new CardRuleC();
     }
+    return $rule;
   }
 }
