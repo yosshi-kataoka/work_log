@@ -8,7 +8,7 @@ class PokerCardTest extends TestCase
 {
   public function testGetRank()
   {
-    $pokerCards  = new PokerCard('CA');
-    $this->assertSame(13, $pokerCards->getRank());
+    $card  = new PokerCard('CA');
+    $this->assertSame(13, $card->getRank());
   }
 }
