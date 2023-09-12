@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/Item.php');
+require_once('item.php');
 
 class Drink extends Item
 {

@@ -2,8 +2,7 @@
 
 class PokerCard
 {
-  const CARD_RANK =
-  [
+  public const CARD_RANK = [
     '2' => 1,
     '3' => 2,
     '4' => 3,
@@ -25,6 +24,6 @@ class PokerCard
 
   public function getRank(): int
   {
-    return self::CARD_RANK[substr($this->suitNumber, 1, strlen($this->suitNumber))];
+    return self::CARD_RANK[substr($this->suitNumber, 1, strlen($this->suitNumber) - 1)];
   }
 }

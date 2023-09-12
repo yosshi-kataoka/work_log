@@ -32,7 +32,7 @@ class VendingMachineTest extends TestCase
     $vendingMachine->depositCoin(100);
     $this->assertSame('', $vendingMachine->pressButton($cola));
     // 投入金額が200円の場合はコーラを購入できる
-    $vendingMachine->depositCoin(200);
+    $vendingMachine->depositCoin(100);
     $this->assertSame('cola', $vendingMachine->pressButton($cola));
 
     // カップが投入されてない場合は購入できない
