@@ -30,5 +30,8 @@ class Game
     if ($this->ruleType === 'B') {
       return new RuleB();
     }
+    if ($this->ruleType === 'C') {
+      return new RuleC();
+    }
   }
 }
