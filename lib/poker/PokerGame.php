@@ -16,11 +16,13 @@ require_once(__DIR__ . '/PokerCard.php');
 require_once(__DIR__ . '/PokerHandEvaluator.php');
 require_once('CardRuleA.php');
 require_once('CardRuleB.php');
+require_once('CardRuleC.php');
 
 class PokerGame
 {
   private const TWO_CARDS_USED = 2;
   private const THREE_CARDS_USED = 3;
+  private const FIVE_CARDS_USED = 5;
 
   public function __construct(private array $cards1, private array $cards2)
   {
@@ -45,6 +47,9 @@ class PokerGame
     }
     if (count($this->cards1) === self::THREE_CARDS_USED) {
       return new CardRuleB();
+    }
+    if (count($this->cards1) === self::FIVE_CARDS_USED) {
+      return new CardRuleC();
     }
   }
 }
