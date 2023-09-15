@@ -10,7 +10,7 @@ class VendingMachine
 
   private int $depositedCoin = 0;
   private int $cupNumber = 0;
-
+  private int $depositNumber = 0;
   public function depositCoin(int $coinAmount): int
   {
     if ($coinAmount === 100) {
@@ -24,9 +24,11 @@ class VendingMachine
   {
     $price = $item->getPrice();
     $cupNumber = $item->getCupNumber();
+    $depositNumber = $item->depositItem();
     if ($this->depositedCoin >= $price && $this->cupNumber >= $cupNumber) {
       $this->depositedCoin -= $price;
       $this->cupNumber -= $cupNumber;
+      $this->depositNumber = $depositNumber--;
       return $item->getName();
     } else {
       return '';
@@ -43,5 +45,14 @@ class VendingMachine
 
     $this->cupNumber = $cupNumber;
     return $this->cupNumber;
+  }
+
+  public function receiveChange()
+  {
+    return $this->depositedCoin;
+  }
+  public function depositItem($item, $num): int
+  {
+    return $item->depositItem($item, $num);
   }
 }

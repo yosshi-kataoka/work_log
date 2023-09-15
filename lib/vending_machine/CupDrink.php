@@ -10,6 +10,7 @@ class CupDrink extends Item
     'ice cup coffee' => 100,
     'hot cup coffee' => 100,
   ];
+  private const MAX_ITEM_NUMBER = 50;
 
   public function __construct(string $name)
   {
@@ -22,6 +23,11 @@ class CupDrink extends Item
   }
 
   public function getCupNumber(): int
+  {
+    return 1;
+  }
+
+  public function getDepositNumber(): int
   {
     return 1;
   }
