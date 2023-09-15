@@ -10,7 +10,7 @@ class Drink extends Item
     'cider' => 100,
     'cola' => 150,
   ];
-
+  private const MAX_ITEM_NUMBER = 50;
   public function __construct(string $name)
   {
     parent::__construct($name);
@@ -24,5 +24,10 @@ class Drink extends Item
   public function getCupNumber(): int
   {
     return 0;
+  }
+
+  public function getDepositNumber(): int
+  {
+    return 1;
   }
 }
