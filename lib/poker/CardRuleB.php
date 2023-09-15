@@ -1,7 +1,11 @@
 <?php
 
+namespace Poker;
+
 require_once('CardRuleBase.php');
 require_once('PokerCard.php');
+
+use Poker\PokerCard;
 
 class CardRuleB implements CardRuleBase
 {
@@ -10,27 +14,49 @@ class CardRuleB implements CardRuleBase
   private const STRAIGHT = 'straight';
   private const THREE_CARD = 'three card';
   private const NUMBER_OF_PAIR = 2;
-  private const NUMBER_OF_THREE = 3;
+  private const NUMBER_OF_THREE = 1;
   private const INVALID_STRAIGHT_NUMBER = 26;
 
-  public function getHand(array $pokerCards): string
+  private const HANDS_STRENGTH = [
+    'high card' => 0,
+    'pair' => 1,
+    'straight' => 2,
+    'three card' => 3,
+  ];
+  public function getHand(array $pokerCards): array
   {
     $cardRanks = array_map(fn ($pokerCard) => $pokerCard->getRank(), $pokerCards);
+    rsort($cardRanks);
+    $primary = max($cardRanks);
+    $secondary = $cardRanks[1];
+    $tertiary =  min($cardRanks);
     $name = self::HIGH_CARD;
     if ($this->isThreeCard([$cardRanks[0], $cardRanks[1], $cardRanks[2]])) {
       $name = self::THREE_CARD;
     } elseif ($this->isInvalidStraight([$cardRanks[0], $cardRanks[1], $cardRanks[2]])) {
     } elseif ($this->isStraight([$cardRanks[0], $cardRanks[1], $cardRanks[2]])) {
+      if ($this->isMinMax([$cardRanks[0], $cardRanks[1], $cardRanks[2]])) {
+        $primary = min(PokerCard::CARD_RANK);
+        $tertiary = max(PokerCard::CARD_RANK);
+      }
       $name =  self::STRAIGHT;
     } elseif ($this->isPair([$cardRanks[0], $cardRanks[1], $cardRanks[2]])) {
       $name =  self::PAIR;
     }
-    return $name;
+
+    $hands = [
+      $name,
+      self::HANDS_STRENGTH[$name],
+      $primary,
+      $secondary,
+      $tertiary,
+    ];
+    return $hands;
   }
 
   public function isThreeCard(array $cards): bool
   {
-    return max(array_count_values($cards)) === self::NUMBER_OF_THREE;
+    return count(array_unique($cards)) === self::NUMBER_OF_THREE;
   }
 
   public function isInvalidStraight(array $cards): bool
@@ -50,5 +76,17 @@ class CardRuleB implements CardRuleBase
   public function isPair(array $cards): bool
   {
     return max(array_count_values($cards)) === self::NUMBER_OF_PAIR;
+  }
+
+  public function getWinner(array $hand1, array $hand2): int
+  {
+    for ($i = 1; $i <= (count($hand1)); $i++) {
+      if ($hand1[$i] > $hand2[$i]) {
+        return 1;
+      } elseif ($hand1[$i] < $hand2[$i]) {
+        return 2;
+      }
+    }
+    return 0;
   }
 }

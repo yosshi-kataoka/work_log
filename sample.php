@@ -1,13 +1,50 @@
 <?php
 
-$items = [
-  ['name' => 'onion', 'price' => 100],
-];
-$total = 0;
-foreach ($items as $item) {
-  $price = $item['price'];
-  $total += $price;
+trait TaxCalculator
+{
+  private float $tax = 0.1;
+  private int $price;
+
+  public function taxedPrice()
+  {
+    return $this->price * (1 + $this->tax);
+  }
 }
 
-料金の取得
-料金の合計
+trait AmericanTaxCalculator
+{
+  private int $price;
+  public function taxedPrice()
+  {
+    return $this->price;
+  }
+}
+
+class Book
+{
+  use TaxCalculator, AmericanTaxCalculator {
+    AmericanTaxCalculator::taxedPrice insteadof TaxCalculator;
+  }
+
+  private int $price;
+
+  public function __construct(private string $title, int $price)
+  {
+    $this->price = $price;
+  }
+}
+
+class Drink
+{
+  use TaxCalculator;
+  private int $price;
+  public function __construct(private string $title, int $price)
+  {
+    $this->price = $price;
+  }
+}
+
+$book = new Book('ハリーポッター', 1000);
+echo $book->taxedPrice() . PHP_EOL; //1000
+$drink = new Drink('コーラ', 100);
+echo $drink->taxedPrice() . PHP_EOL; //110

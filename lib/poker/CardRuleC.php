@@ -1,7 +1,11 @@
 <?php
 
+namespace Poker;
+
 require_once('CardRuleBase.php');
 require_once('PokerCard.php');
+
+use Poker\PokerCard;
 
 class CardRuleC implements CardRuleBase
 {

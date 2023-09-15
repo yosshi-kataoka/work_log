@@ -1,8 +1,13 @@
 <?php
 
+namespace OopPoker\Tests;
+
 use PHPUnit\Framework\TestCase;
 
 require_once(__DIR__ . '/../../lib/oop_poker/RuleC.php');
+
+use OopPoker\RuleC;
+use OopPoker\Card;
 
 class RuleCTest extends TestCase
 {

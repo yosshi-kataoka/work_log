@@ -31,6 +31,7 @@
 // ◯実行例
 
 // calcRation('21:00', [1, 1, 1, 3, 5, 7, 8, 9, 10])  //=> 1298
+
 const ITEM_PRICE_LIST = [
   1 => ['price' => 100, 'type' => ''],
   2 => ['price' => 150, 'type' => ''],
@@ -43,7 +44,7 @@ const ITEM_PRICE_LIST = [
   9 => ['price' => 80, 'type' => 'drink'],
   10 => ['price' => 100, 'type' => 'drink'],
 ];
-const TAX = 10;
+const TAX_RATE = 10;
 const SECONDARY_DISCOUNT_ONION_NUMBER = 5;
 const SECONDARY_DISCOUNT_ONION_PRICE = 100;
 const PRIMARY_DISCOUNT_ONION_NUMBER = 3;
@@ -69,7 +70,7 @@ function calcRation(string $time, array $items): int
   $totalPrice -= discountOnionPrice(array_count_values($items)[1]);
   $totalPrice -= discountSetPrice($drink, $bento);
   $totalPrice -= discountTimeSale($time, $bentoPrice);
-  return (int)$totalPrice * (100 + TAX) / 100;
+  return (int)$totalPrice * (100 + TAX_RATE) / 100;
 }
 
 function discountOnionPrice(int $onion_number): int
