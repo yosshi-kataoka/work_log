@@ -44,14 +44,14 @@ const ITEM_PRICE = [
   9 => ['price' => 80, 'type' => 'drink'],
   10 => ['price' => 100, 'type' => 'drink'],
 ];
-const TAX = 10;
+const TAX_RATE_ = 10;
 
 const SECOND_ONION_DISCOUNT_NUMBER = 5;
 const SECOND_ONION_DISCOUNT_PRICE = 100;
 const FIRST_ONION_DISCOUNT_NUMBER = 3;
 const FIRST_ONION_DISCOUNT_PRICE = 50;
 
-const DISCOUNT_SET_PRICE = 20;
+const DISCOUNT_OF_SET_PRICE = 20;
 
 const DISCOUNT_BENTO_TIME = '20:00';
 
@@ -74,7 +74,7 @@ function calc(string $time, array $items): int
   $totalPrice -= discountOnion(array_count_values($items)[1]);
   $totalPrice -= discountSet($drink, $bento);
   $totalPrice -= discountBentoTime($time, $bentoTotalPrice);
-  return (int)$totalPrice * (100 + TAX) / 100;
+  return (int)$totalPrice * (100 + TAX_RATE_) / 100;
 }
 
 function discountOnion(int $onionNumber): int
@@ -89,7 +89,7 @@ function discountOnion(int $onionNumber): int
 
 function discountSet(int $drinkNumber, int $bentoNumber): int
 {
-  return DISCOUNT_SET_PRICE * min([$drinkNumber, $bentoNumber]);
+  return DISCOUNT_OF_SET_PRICE * min([$drinkNumber, $bentoNumber]);
 }
 
 function discountBentoTime(string $time, int $bentoTotalPrice): int

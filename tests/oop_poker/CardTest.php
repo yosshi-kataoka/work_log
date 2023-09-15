@@ -1,8 +1,11 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+namespace OopPoker\Tests;
 
 require_once(__DIR__ . '/../../lib/oop_poker/Card.php');
+
+use PHPUnit\Framework\TestCase;
+use OopPoker\Card;
 
 class CardTest extends TestCase
 {

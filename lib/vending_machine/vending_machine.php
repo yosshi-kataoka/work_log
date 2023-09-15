@@ -1,5 +1,7 @@
 <?php
 
+namespace VendingMachine;
+
 require_once('item.php');
 
 class VendingMachine
