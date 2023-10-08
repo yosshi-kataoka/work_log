@@ -76,7 +76,7 @@ class PokerGame
   {
     $rule = new CardRuleA();
     if (count($this->cards1) === self::THREE_CARDS_USED) {
-      return new CardRuleB();
+      return $rule = new CardRuleB();
     }
     return $rule;
   }
