@@ -38,6 +38,7 @@ class Game
         $player->addPoint($card);
       }
     }
+
     foreach ($players[0]->getHand() as $cards) {
       echo 'あなたの引いたカードは' . $players[0]->getSuit($cards) . 'の' . $players[0]->getNumber($cards) . 'です。' . PHP_EOL;
     }

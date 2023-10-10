@@ -4,8 +4,11 @@ namespace BlackJack;
 
 abstract class User
 {
+  protected const MAX_POINT = 21;
+  protected const SUBTRACT_POINT = 10;
   protected $point = 0;
   protected $hand = [];
+  protected $numberOfA = 0;
   abstract public function drawCard(Deck $deck, int $number): array;
   abstract public function addHand(Card $hands): void;
   abstract public function addPoint(Card $cards): void;

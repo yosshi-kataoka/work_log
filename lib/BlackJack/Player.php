@@ -8,6 +8,7 @@ require_once('User.php');
 
 class Player extends User
 {
+
   public function drawCard(Deck $deck, int $number): array
   {
     $hand = $deck->drawCard($number);
@@ -22,6 +23,13 @@ class Player extends User
   public function addPoint(Card $cards): void
   {
     $this->point += $this->getScore($cards);
+    if ($this->getNumber($cards) === 'A') {
+      $this->numberOfA++;
+    }
+    if ($this->point > parent::MAX_POINT && $this->numberOfA > 0) {
+      $this->point -= parent::SUBTRACT_POINT;
+      $this->numberOfA--;
+    }
   }
 
   public function getHand(): array
