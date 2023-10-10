@@ -22,6 +22,13 @@ class Dealer extends User
   public function addPoint(Card $cards): void
   {
     $this->point += $this->getScore($cards);
+    if ($this->getNumber($cards) === 'A') {
+      $this->numberOfA++;
+    }
+    if ($this->point > parent::MAX_POINT && $this->numberOfA > 0) {
+      $this->point -= parent::SUBTRACT_POINT;
+      $this->numberOfA--;
+    }
   }
 
   public function getHand(): array

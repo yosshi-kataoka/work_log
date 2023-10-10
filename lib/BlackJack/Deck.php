@@ -9,7 +9,7 @@ use BlackJack\Card;
 class Deck
 {
   private const CARD_RANK = [
-    'A' => 1,
+    'A' => 11,
     '2' => 2,
     '3' => 3,
     '4' => 4,
