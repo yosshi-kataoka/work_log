@@ -8,6 +8,7 @@ class StandardRule implements Rule
 {
   private const MAX_POINT = 21;
   private const ADD_CARD_NUMBER = 1;
+  private const DEALER_MINIMUM_POINT = 17;
 
   public function handJudge(array $players, Deck $deck): bool
   {
@@ -32,7 +33,7 @@ class StandardRule implements Rule
       }
     }
 
-    while ($players[0]->getPoint() > $players[1]->getPoint()) {
+    while ($players[1]->getPoint() < self::DEALER_MINIMUM_POINT) {
       $dealerAddHand = $players[1]->drawCard($deck, self::ADD_CARD_NUMBER);
       $players[1]->addPoint($dealerAddHand[0]);
       $players[1]->addHand($dealerAddHand[0]);

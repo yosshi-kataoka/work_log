@@ -8,6 +8,13 @@ require_once('User.php');
 
 class Dealer extends User
 {
+  private string $name = 'ディーラー';
+
+  public function getName(): string
+  {
+    return $this->name;
+  }
+
   public function drawCard(Deck $deck, int $number): array
   {
     $hand = $deck->drawCard($number);

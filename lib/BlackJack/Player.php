@@ -9,6 +9,16 @@ require_once('User.php');
 class Player extends User
 {
 
+  public function __construct(private string $name)
+  {
+    $this->name = $name;
+  }
+
+  public function getName(): string
+  {
+    return $this->name;
+  }
+
   public function drawCard(Deck $deck, int $number): array
   {
     $hand = $deck->drawCard($number);

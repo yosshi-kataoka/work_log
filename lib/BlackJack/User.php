@@ -9,6 +9,7 @@ abstract class User
   protected $point = 0;
   protected $hand = [];
   protected $numberOfA = 0;
+  abstract public function getName(): string;
   abstract public function drawCard(Deck $deck, int $number): array;
   abstract public function addHand(Card $hands): void;
   abstract public function addPoint(Card $cards): void;
